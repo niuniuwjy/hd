@@ -1,0 +1,26 @@
+<div class="text-center muted">
+  <h2><%= @category.Name.to_s.force_encoding("UTF-8") %></h2>
+  </div>
+
+
+
+<ul class="thumbnails">
+  <% @category.products.each do |product| %>
+
+  <li class="span4">
+    <div class="thumbnail">
+      <%= link_to(image_tag(product.pictures.first.image) ,:controller => "products", :action => "show", :id => product.id) %>
+      <div class="caption">
+        <h6>
+        <%= raw product.title.to_s.force_encoding("UTF-8") %>
+        </h6>
+        <div class="btn btn-inverse" >
+          <i class = "icon-white icon-heart">
+          <%= product.like_count %>
+              </i>
+      </div>
+        </div>
+    </div>
+  </li>
+  <% end %>
+</ul>

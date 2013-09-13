@@ -1,0 +1,9 @@
+development:
+  adapter: mysql
+  encoding: utf8
+  reconnect: false
+  database: hd_development_sql
+  pool: 5
+  username: root
+  password:
+  host: localhost

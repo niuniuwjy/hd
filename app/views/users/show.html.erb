@@ -1,0 +1,54 @@
+<div class="span8 well" style ="color:dodgerblue">
+  <div class="row">
+    <div class="span4">
+    <p><%=@user.username%></p>
+	<span class=" badge badge-warning">8 messages</span> <span class=" badge badge-info">15 followers</span>
+    </div>
+  </div>
+</div>
+
+
+
+<script>
+    $(function () {
+        $('#myTab a:last').tab('show');
+    })
+</script>
+
+<div class="span12 well" style ="color:dodgerblue">
+  <div class="row">
+    <div class="tabbable tabs-left">
+      <ul class="nav nav-tabs">
+        <li class="<%= 'active' if params[:tab] == 'tab1' %>"><a href="#tab1" data-toggle="tab">评价</a></li>
+        <li class="<%= 'active' if params[:tab] == 'tab5' %>"> <a href="#tab5" data-toggle="tab">喜欢</a></li>
+        <li class="<%= 'active' if params[:tab] == 'tab9' %>"> <a href="#tab9" data-toggle="tab">分享</a></li>
+      </ul>
+
+      <div class="tab-content">
+        <div class="<%= if (params[:tab] == 'tab1' || !params[:tab])then 'tab-pane active'  else 'tab-pane' end%>" id="tab1">
+          <% @user.comments.each do |comment|%>
+              <%= comment.created_at.strftime("%Y-%m-%d") %><br>
+              <%= comment.comment.to_s.force_encoding("UTF-8") %><br><br>
+          <%end%>
+        </div>
+
+        <div class="<%= if params[:tab] == 'tab5' then 'tab-pane active'  else 'tab-pane' end%>" id="tab5">
+          <%= "我喜欢的" %>
+          <!--和product对应不上，所以只能做一个100以内的循环，产品数超过100之后要变大!-->
+         <% for i in 1..100  %>
+          <%= liked_product = Likeable.find_by_resource_id("Product", i) %>
+           <% end %>
+        </div>
+
+
+
+        <div class="<%= if params[:tab] == 'tab9' then 'tab-pane active'  else 'tab-pane' end%>" id="tab9">
+          <%= "我分享的" %>
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+</div>
+

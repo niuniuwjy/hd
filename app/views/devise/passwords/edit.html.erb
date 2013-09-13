@@ -1,0 +1,40 @@
+<%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :put }) do |f| %>
+    <%= devise_error_messages! %>
+
+    <div class="container">
+      <div class="row-fluid">
+        <div class="span12">
+          <div class="span6">
+            <div class="area">
+              <form class="form-horizontal">
+                <div class="heading">
+                  <h4 class="form-heading">修改密码</h4>
+                </div>
+
+                <div class="control-group">
+                  <label class="control-label" for="inputPassword">老密码</label>
+                  <%= f.password_field :password %>
+                </div>
+
+                <div class="control-group">
+                 <%= f.hidden_field :reset_password_token %>
+                </div>
+
+                <div class="control-group">
+                  <label class="control-label" for="inputPasswordConfirmation">确认新密码</label>
+                  <%= f.password_field :password_confirmation %>
+                </div>
+
+
+                <button type="submit" class="btn btn-success">修改我的密码~</button>
+              </form>
+
+            </div>
+            <%= render "devise/shared/links" %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+<% end%>
